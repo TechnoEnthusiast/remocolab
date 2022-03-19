@@ -377,9 +377,9 @@ no-httpd
 no-x11-tcp-connections
 """)
 
-  gpu_name = _get_gpu_name()
-  if gpu_name != None:
-    _setup_nvidia_gl()
+  #gpu_name = _get_gpu_name()
+  #if gpu_name != None:
+  #  _setup_nvidia_gl()
 
   vncrun_py = tempfile.gettempdir() / pathlib.Path("vncrun.py")
   vncrun_py.write_text("""\
@@ -417,7 +417,7 @@ subprocess.run(
                     universal_newlines = True)
   return r.stdout
 
-def setupVNC(ngrok_region = None, check_gpu_available = True, tunnel = None, mount_gdrive_to = None, mount_gdrive_from = None, public_key = None):
+def setupVNC(ngrok_region = None, check_gpu_available = False, tunnel = None, mount_gdrive_to = None, mount_gdrive_from = None, public_key = None):
   stat, msg = _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_gdrive_to, mount_gdrive_from, True)
   if stat:
     msg += _setupVNC()
